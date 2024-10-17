@@ -1,0 +1,33 @@
+{% extends 'movienook/base.html' %}
+
+
+{% block content %}
+
+<div class="content">
+    <div class="popup" style="width: 30%; padding: 40px;">
+        <h1 style="margin-top: 20px;">RESERVATION SUCCESSFUL!</h1><br>
+        <div style="text-align: left; font-size: 18px; margin-left: 120px;">
+            <b>From:</b> {{ payment.email}} <br>
+            <b>Theater:</b> {{payment.theater_res.theater}} <br>
+            <b>For:</b> {{payment.theater_res.reserve_date}} <br>
+        </div>
+            <br>
+
+          <p style="color:  rgb(255, 78, 78);">WARNING</p>
+
+          <small style="font-size: SMALL;">
+            Theater reservations are non-transferable and cannot be modified once confirmed.
+            Your reservation is only valid for the specified theater and date.
+          </small><br><br>
+          <form action="">
+            <a style="color: rgb(255, 255, 255);" href="{% url 'home' %}"><b><<- Back to home </b> </a>
+          </form>
+        </div>
+        <br>
+        
+      </div>  
+
+</div>
+      
+      
+{% endblock content %}

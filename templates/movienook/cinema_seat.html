@@ -1,0 +1,120 @@
+{% extends 'movienook/base.html' %}
+
+{% block content%}
+
+<div class="content">
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body>
+
+    <div class="seat-map">
+      <h2 style="text-align: center;">CINEMA NO.{{movie.cinema}}</h2>
+    </div>
+    <div class="legend">
+      
+  
+      <div class="seat-map legend" style="padding: 5px;">
+        <fieldset class="seat">Available</fieldset>
+        <fieldset class="seat selected">Selected</fieldset>
+        <fieldset class="seat reserved">Reserved</fieldset>
+      </div>
+    </div>
+    
+    
+    <div class="seat-map">
+            <div class="seat">A1</div>
+            <div class="seat reserved">A2</div>
+            <div class="seat">A3</div>
+            <div class="seat selected">A4</div>
+            <div class="seat selected">A5</div>
+
+    </div>
+    <div class="seat-map">
+        <div class="seat">B1</div>
+        <div class="seat reserved">B2</div>
+        <div class="seat reserved">B3</div>
+        <div class="seat">B4</div>
+        <div class="seat">B5</div>
+    </div>
+
+    <div class="seat-map">
+      <div class="seat">C1</div>
+      <div class="seat">C2</div>
+      <div class="seat">C3</div>
+      <div class="seat">C4</div>
+      <div class="seat">C5</div>
+  </div>
+
+  <div class="seat-map">
+    <div class="seat">D1</div>
+    <div class="seat">D2</div>
+    <div class="seat">D3</div>
+    <div class="seat">D4</div>
+    <div class="seat">D5</div>
+</div>
+
+<div class="seat-map">
+  <div class="seat">E1</div>
+  <div class="seat">E2</div>
+  <div class="seat">E3</div>
+  <div class="seat">E4</div>
+  <div class="seat">E5</div>
+</div>
+<br><br>
+
+<div class="seat-map select">
+  <br><br>
+    <button style="border-radius: 20px;" onclick="openPopup()">
+      PAYMENT
+    </button>
+</div>
+<br><br>
+
+<div class="overlay" id="overlay1" style="display: none;"></div>
+
+<div class="popup" id="popup" style="display: none;">
+  <h2 class="login__title" id="login__title">PAYMENT</h2>
+  <p><input type="text" placeholder="Full Name"></p>
+  <p><input type="text" placeholder="Email Addrress"></p>
+  <p><input type="text" placeholder="Billing Address"></p>
+  <p> <input type="text" placeholder="Phone Number"></p>
+  <p><input type="text" placeholder="Credit/Debit Card No."></p>
+  <p><input type="text" placeholder="CVV/CVC"></p>
+  <br>
+  <p class="login__title" id="login__title" >Amount: <b>Php. 500.00 </b></p>
+  <button onclick="closePopup()">Cancel</button>
+  <button onclick="thankyou()">Confirm</button>
+</div>
+
+<script>
+
+  function thankyou() {
+   back = confirm("Thank you! Your ticket can be downloaded on email which will be sent to you shortly.")
+   if (back == true) {
+    window.location.href = "/"
+   }
+    
+  }
+  function openPopup() {
+    document.getElementById("popup").style.display = "block"; 
+    document.getElementById("overlay").style.display = "block"; 
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none"; 
+    document.getElementById("overlay").style.display = "none"; 
+  }
+</script>
+  </body>
+
+  
+</html>
+
+
+
+
+
+</div>
+{% endblock content%}

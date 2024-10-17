@@ -1,0 +1,29 @@
+{% extends 'movienook/base.html' %}
+
+{% block content %}
+
+<div class="content" style="display: flex;">
+
+    <form method="POST" action="">
+        <div class="popup" style="padding: 30px; height: 700px; margin-top: 20px;"> <br>
+            <h1 style="margin-left: 5%;">PAYMENT FORM</h1><br>
+            
+            {% csrf_token %}
+            <div style="margin-left:25%; text-align: left;">{{form.as_p}}</div><br>
+    
+            <small style="color: aliceblue; font-size: 13px;"><b>NOTE:</b> By purchasing a movie ticket, you agree that the ticket is valid only for the specified movie 
+                and showtime. Tickets are non-transferable and non-refundable. Once purchased, tickets cannot be exchanged or refunded for any reason,
+                including but not limited to changes in personal schedules, movie preferences, or theater policies. It is the responsibility
+                of the ticket holder to ensure the ticket is used for the intended movie and showtime. Lost or stolen tickets will not be
+                replaced. Management reserves the right to refuse admission or eject any person violating theater policies without refund. </small>
+                <br><button><a href="{% url 'home' %}" style="color: aliceblue; height: 40px; font-size: medium">Cancel</a></button>
+                
+                <input type="submit" value="Confirm">    
+        </div>
+    </form>
+
+ 
+        
+</div>
+
+{% endblock content %}

@@ -1,0 +1,61 @@
+{% extends 'movienook/base.html' %}
+
+{% block content %}
+<div class="content" style="padding: 30px; margin-right: 25%; margin-left: 25%;">
+    <h2> Exclusive Theaters Just for You!</h2>
+
+    {% for theater in theaters %}
+    <br>
+    <div class="field" >
+        <fieldset>
+                <div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/708/708883.png" alt="theater img" style="height: 250px; width: 200px;">
+                    <h2 style="color: rgb(255, 255, 255); text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">{{theater.name}}</h2>            
+                </div>
+                
+                <div>
+                    <div class="field-content">
+                        <br><br>
+                        <h1 style="text-align: left;">{{theater.location}}</h1>
+                        <p id="sched">{{theater.capacity}} seats</p>
+                        <h1 style="text-align: left;">Available dates:</h1>
+                        {% if theater.date_1 is not None %}
+                            <ul id="sched">{{theater.date_1}}</ul>
+                        {% endif %}
+                        {% if theater.date_2 is not None %}
+                            <ul id="sched">{{theater.date_2}}</ul>
+                        {% endif %}
+                        {% if theater.date_3 is not None %}
+                            <ul id="sched">{{theater.date_3}}</ul>
+                        {% endif %}
+                        {% if theater.date_4 is not None %}
+                            <ul id="sched">{{theater.date_4}}</ul>
+                        {% endif %}
+
+                        {% if theater.date_1 is None and theater.date_2 is None and theater.date_3 is None and theater.date_4 is None %}
+                            <ul id='sched' style="color: rgba(255, 0, 0, 0.497);">No Available Dates</ul>
+                        {% endif %}
+                        <br>
+                    </div>
+                    
+                    <form method="GET" action="{% url 'reservetheater' theater.id %}">
+                        <button>RESERVE</button>
+                    </form>
+                    <!-- <button style="border-radius: 20px;" onclick="reservationConfirmation()">RESERVE</button> -->
+                    <br>
+                </div>
+            </fieldset>
+            
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+    function reservationConfirmation() {
+        var confirmed = confirm("Please wait for the confirmation email that will be sent to you.");
+        if (confirmed) {
+            console.log("Please wait for the confirmation email that will be sent to you.");
+        }
+    }
+</script>
+{% endblock content %}

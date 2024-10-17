@@ -1,0 +1,42 @@
+{% extends 'movienook/base.html' %}
+
+{% block content %}
+
+<div class="content" style="padding: 30px; margin-right: 25%; margin-left: 25%;">
+    {% for item in movies %}
+    <br>
+        <fieldset style="padding: 20px; display: grid; grid-template-columns: repeat(2,1fr);">
+
+            <div>
+                <h2>{{item.title}}</h2>
+                <img src="{{ item.img.url }}" alt="Movie Poster" style="height: 250px; width: 200px;">
+                <br><br>
+            </div>
+            
+            <div>
+                <div style="padding: 50px;" class="content">
+                    <p>SHOWING: <b>{{item.date}}</b></p>
+                    <h4>Available show times</h4> 
+                    <br>
+
+                    {% for time in item.time %}
+                    <li>{{time}}</li>
+                    {% endfor %}
+                </div>
+
+                <form action="{{item.trailer}}" method="get" style="display: flex; justify-content: center;" id="home_button">
+                    <button>WATCH TRAILER</button>
+                </form>
+                <br>
+            </div>
+        </fieldset>
+        <br>
+    {% endfor %}
+</div>
+
+<!-- <div>
+    {% include 'movienook/movie_schedules.html' %}
+</div> -->
+
+{% endblock content %}
+

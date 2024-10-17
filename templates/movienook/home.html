@@ -1,0 +1,53 @@
+{% extends 'movienook/base.html' %}
+
+{% block content %}
+<div class="content">
+
+
+    <br>
+<div id="header_container">
+    {% if request.user.is_authenticated %}
+    <h4  style="color:rgb(255, 78, 78);">Hello, {{request.user}}</h4><h2>Here are today's preview picks! </h2><br>
+    {% else %}
+    <h2 id='homeheader'>Preview Picks</h2><br>
+    {% endif %}
+</div>
+
+<div class='previews' style="display: flex; justify-content: center;">
+    {% for movie in previews %}
+    <div style="background-color: black; width: 60%; display: inline-flex; justify-content: center;">
+        <iframe width="560" height="315" src="{{movie.preview}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    {% endfor %}
+</div>
+
+<div style=" margin: 70px;">
+    <h2>NOW SHOWING</h2>
+    <a href="{% url 'movie' %}" style="color: aliceblue;">&nbsp;&emsp;&emsp;Buy your tickets here!</a><br>
+    <br>
+    <div style="display:grid; grid-template-columns: repeat(4, 1fr); grid-gap: 10px;" class="home_poster" >
+
+        {% for movie in movies %}
+        <div class="poster">
+            <fieldset id="home_preview">
+                <img src="{{movie.img}}" alt="movie img" style="height: 150px; width: 120px;" >
+                <div class="preview_form" >
+                    <p class="rating"> <img src="static/rating.png">&ensp;{{movie.rating}} </p>
+                    <h3><em>{{movie.title}}</em></h3>
+                    
+                </div>
+
+                <div>
+                    <form action="{% url 'details' movie.id %}" method="get" id="home_button">
+                        <button>Book</button>
+                    </form> 
+                </div>
+            </fieldset>
+        </div>
+            
+        {% endfor %}
+    <br>
+    </div>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends 'movienook/base.html' %}
+
+{% block content %}
+<div class="content">
+
+        <div style="text-align: center;"><h2></h2></div>
+
+    <div style="padding: 30px; display: flex; flex-wrap: wrap; " >
+        
+                <!-- <img src="https://www.smcinema.com/CDN/media/entity/get/FilmPosterGraphic/HO00000720?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500s" alt="image" style="height: 120px; width: 100px;">
+                <h3><em>Abigail</h3></em></h3><br>
+                <a href="https://www.youtube.com/embed/3PsP8MFH8p0?si=I10524RYpL96PstZ" title="YouTube video player"><small>Watch Trailer</small></a> -->
+
+                {% for item in coming %}
+                <fieldset class="field" style="width: 250px;">
+                    <img src="{{item.poster.url}}" style="height: 180px; width: 140px;">
+                    <h3><em>{{item.movie_title}}</h3></em></h3><br>
+                    <a href="{{item.trailer}}" title="Trailer"><small>Watch Trailer</small></a>
+                </fieldset>
+                <br>
+                {% endfor %}
+            
+    <!--         
+            <fieldset class="field">
+                <img src="https://www.smcinema.com/CDN/media/entity/get/FilmPosterGraphic/HO00000725?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500" alt="image" style="height: 120px; width: 100px;">
+                <h3><em>Arcadian</h3></em></h3><br>
+                <a href="https://www.youtube.com/embed/RGLtN_2UrEw?si=HhqBY5U73EUB_Ih5"><small>Watch Trailer</small></a>
+            </fieldset>
+            <br>
+            
+            <fieldset class="field">
+                <img src="https://m.media-amazon.com/images/M/MV5BNTAyMDk4NjYtM2Q3My00NDkxLTk2ZDktNDczNTFlN2Q4NjJkXkEyXkFqcGdeQXVyMzQwMTY2Nzk@._V1_FMjpg_UX1000_.jpg" alt="image" style="height: 120px; width: 100px;">
+                <h3><em>Cash Out</h3></em></h3><br>
+                <a href="https://www.youtube.com/embed/mKoIRORnL3I?si=4tMqnb8yJAiHk0Qn"><small>Watch Trailer</small></a>
+            </fieldset>
+            <br>
+            
+            <fieldset class="field">
+                <img src="https://www.smcinema.com/CDN/media/entity/get/FilmPosterGraphic/A000000914?referenceScheme=Global&allowPlaceHolder=true&height=500" alt="image" style="height: 120px; width: 100px;">
+                <h3><em>Breathe</h3></em></h3><br>
+                <a href="https://www.youtube.com/embed/chaHsowROfQ?si=YOGnOcIAFK6SqQrG"><small>Watch Trailer</small></a>
+            </fieldset>
+
+
+
+        <br> -->
+        
+    </div>
+
+        
+</div>
+
+{% endblock %}

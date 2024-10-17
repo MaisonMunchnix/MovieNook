@@ -1,0 +1,70 @@
+{% extends 'movienook/base.html' %}
+<title>Movies</title>
+
+{% block content %}
+
+<div class="content">
+    <div style="padding: 30px;">
+
+        <h2 style="text-align: center;">NOW SHOWING</h2>
+        <br>
+        <div class="movielist" style="grid-template-columns: repeat(3, minmax(30rem, 1fr));
+        gap: .5rem;">
+
+
+                {% for item in showtimes %}
+                    <fieldset class="field">
+                        <p style="text-transform: uppercase;" >{{item.movie.theater}}</p>
+                        <img src="{{item.movie.img.url}}" alt="">
+                        <h3><em>{{item.movie.title}}</em></h3>
+
+                        <div class='timeslot'  id="timeslot" style="margin-top: 20px; display: inline-flex; height: 30px;
+                            padding: 10px; text-transform: uppercase; gap: 2px; background-color: rgba(246, 246, 246, 0.218);
+                            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); font-size: 18px;" >
+                            <b><p style="color: rgba(0, 0, 0, 0.599);">{{item.timeslot_1|default_if_none:""}}</p></b>
+                            <b><p style="color: rgba(0, 0, 0, 0.599);">{{item.timeslot_2|default_if_none:"" }}</p></b>
+                            <b><p style="color: rgba(0, 0, 0, 0.599);">{{item.timeslot_3|default_if_none:"" }}</p></b>
+                            <b><p style="color: rgba(0, 0, 0, 0.599);">{{item.timeslot_4|default_if_none:"" }}</p></b>
+                        </div>
+
+                        <form action="{% url 'details' item.movie_id %}" style="top: 0"><button style="border-radius: 30px;">book tickets</button></form>
+                        
+                        
+                        
+                        <div class="movie_poster"><p style="text-align: justify; line-height: 1.4em; ">&emsp;{{item.movie.summary}}</p></div>
+                    </fieldset>
+                {% endfor %}
+
+                <!-- {% for object in theaters.theaters.all  %}
+                <li>{{ object }}</li>
+                {% endfor %} -->
+        </div>
+        <br>
+        
+    </div>
+
+
+
+
+
+</div>
+{% endblock content %}
+
+<!-- <img src="{{movie.img.url}}" alt="image">
+                        <h3><em>{{movie.title}}</h3></em></h3>
+                        <form action="{% url 'details' movie.id %}"><button>book tickets</button></form>
+                        <div class="movie_poster"><p style="text-align: justify; line-height: 1.4em; ">&emsp;{{movie.summary}}</p></div> -->
+
+
+                        <!-- {% for movie in movies %}
+                        <fieldset class="field" style="width: 350px;">
+                            <img src="{{movie.img.url}}" alt="image">
+                            <h3><em>{{movie.title}}</h3></em></h3>
+                            <form action="{% url 'details' movie.id %}"><button>book tickets</button></form>
+                            <div class="movie_poster"><p style="text-align: justify; line-height: 1.4em; ">&emsp;{{movie.summary}}</p></div>
+                        </fieldset>
+    
+                        {% for time in showtimes %}
+                             
+                        {% endfor %}
+                    {% endfor %} -->

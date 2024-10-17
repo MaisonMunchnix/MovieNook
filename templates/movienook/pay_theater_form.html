@@ -1,0 +1,22 @@
+{% extends 'movienook/base.html' %}
+
+{% block content %}
+<br><br>
+<div class="content">
+    <form method="POST" action="">
+        <div class="popup" style="padding: 50px; width: 30%;">
+            <h1>RESERVE</h1>
+            {{theater_res.theater.name}}<BR></BR>
+            <div style="text-align: left; margin-left: 120px;">
+                {% csrf_token %}
+                {{form.as_p}}
+            </div>
+            <small style="color: aliceblue; font-size: 13px;"><b>NOTE:</b>
+                Theater reservations are only valid for the specified date and time. They cannot be transferred or modified once confirmed.
+                Management reserves the right to refuse entry or revoke reservations for non-compliance with policies.</small>
+                <br><button><a href="{% url 'home' %}" style="color: aliceblue; height: 40px; font-size: medium">Cancel</a></button>
+                <input type="submit" value="Confirm">    
+        </div>
+    </form>
+</div>
+{% endblock content %}

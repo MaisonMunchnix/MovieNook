@@ -1,0 +1,41 @@
+{% extends 'movienook/base.html' %}
+
+{% block content %}
+<div class="content" style="margin-left: 20%;">
+
+    <h1 style="margin-right: 20%; margin-top: 20%;">Available Dates</h1><br>
+    {% if theater.date_1 is not None %}
+    <ul style="margin-left: 60px; text-align: left;">{{theater.date_1}}</ul>
+    {% endif %}
+    {% if theater.date_2 is not None %}
+    <ul style="margin-left: 60px;">{{theater.date_2}}</ul>
+    {% endif %}
+    {% if theater.date_3 is not None %}
+    <ul style="margin-left: 60px;">{{theater.date_3}}</ul>
+    {% endif %} 
+    {% if theater.date_4 is not None %}
+    <ul style="margin-left: 60px;">{{theater.date_4}}</ul>
+    {% endif %} 
+
+    {% if theater.date_1 is None and theater.date_2 is None and theater.date_3 is None and theater.date_4 is None %}
+    <ul>
+        <p style="color: rgb(198, 61, 61); font-size: medium;">No dates available for reservation.</p>
+    </ul>
+    {% endif %}
+
+    
+    <form method="POST" action="">
+        <div class="popup" style="margin-left: 15%; width: 40%;">
+            <h1>RESERVATION FORM</h1>
+            <h1>{{theater.name}}</h1><br>
+            <div style="margin-left: 10%; text-align: left;">
+               {% csrf_token %}
+               {{form.as_p}}
+            </div>
+            <small style="font-size: 15px;">Fee: Php. {{theater.reservation_fee}}</small><br>
+
+            <input style="height: 40px; font-size: small" type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% endblock %}

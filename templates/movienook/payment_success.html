@@ -1,0 +1,32 @@
+  {% extends 'movienook/base.html' %}
+  <html>
+    {% block content %}
+      
+      <div class="popup" style="width: 30%; padding: 40px;">
+        <h1 style="margin-top: 20px;">PAYMENT SUCCESSFUL!</h1><br>
+        
+        <div>
+          <div style="text-align: left; margin-left: 120px; font-size: medium;">
+            <b>From:</b> {{ payment.email}} <br>
+            <b>Movie:</b> {{payment.movie_transaction.movie}} <br>
+            <b>Date:</b> {{payment.movie_transaction.date}} <br>
+            <b>Theater:</b> {{payment.movie_transaction.movie.theater}}, {{payment.movie_transaction.movie.theater.location}}<BR></BR>
+          </div>
+          
+
+          <p style="color:  rgb(255, 78, 78);">WARNING</p>
+
+          <small style="font-size: SMALL;">
+            Tickets are non-transferable, non-refundable, and valid only for the specified movie and date. 
+            Lost or stolen tickets will not be replaced. Management reserves the right to refuse admission or 
+            eject violators of theater policies.
+          </small>
+        </div>
+        <br>
+        <form action="">
+          <a style="color: rgb(255, 255, 255);" href="{% url 'home' %}"><b><<- Back to home </b> </a>
+        </form>
+      </div>  
+    {% endblock content %}
+
+  </html>

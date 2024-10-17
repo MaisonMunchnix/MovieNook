@@ -1,0 +1,32 @@
+{% extends 'movienook/base.html' %}
+
+{% block content %}
+<div class="content">
+    <div style="padding: 20px;">
+        <fieldset style="padding: 30px; margin-left: 20%; margin-right: 20%; display: grid; grid-template-columns: repeat(2, 1fr); font-family: monospace;">
+            <h3 style="text-align: left; font-family: Open Sans, Helvetica, sans-serif;">BOOK TICKETS NOW !!! </h3>
+            <h3 style="text-align: center; text-transform: uppercase;">{{movietrans.movie.title}} <br><small>{{movietrans.movie.theater}}</small></h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                <img src="{{movietrans.movie.img.url}}" alt="Movie Poster" style="height: 500px; width: 400px;">
+            </div>
+            <div style="text-align:justify ; margin-left: 25px;" class="order">
+                <br>
+                <p style="font-size: small; text-align: left; margin-right: 20px;">User: {{movietrans.user}}</p>
+                {% if movietrans %}
+                        <p><b>DATE: . . . . . . . . . . . . . . </b> {{movietrans.date}}</p>
+                        <p><b>NO. OF TICKETS: . . . . . . . . . <br></b> {{movietrans.quantity}} </p>
+                        <p><b>TOTAL: . . . . . . . . . . . . . . <br></b> Php. {{total}}</p>
+                        <p style="text-align: right;">ID# {{ movietrans.id }}</p>
+                {% endif %}
+                <form action="{% url 'payment' movietrans.id %}">
+                    <button style="border-radius: 20px;">CONTINUE TO PAYMENT</button> 
+                </form>
+
+            </div>
+            <br><br>
+        </fieldset>
+    </div>
+</div>
+{% endblock content %}
+
+               

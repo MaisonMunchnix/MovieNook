@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'styles/main.css' %}">
+    {% if title %}
+        <title>{{title}}</title>
+    {% else %}
+        <title>Movie Nook</title>
+    {% endif %}
+</head>
+<body>
+    {% include 'movienook/navbar.html' %}
+
+    <!-- login page when user does not exist -->
+    <div class="content" id="message_Error">
+        {% if messages %}
+            <ul class="messages" style="text-align: center; font-size: small;">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>

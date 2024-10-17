@@ -1,0 +1,81 @@
+{% extends 'movienook/base.html' %}
+
+{% block content %}
+
+<div class="content" style="margin-left: 20%;">
+
+    <form method="POST" action="">
+        <br>
+        {% for item in showtime %}
+                {% if item.movie == movie %}
+                <img src="{{movie.img.url}}" alt="" style="margin-left: 1%; margin-top: 0.5%; height: 450px;">
+            {% endif %}
+        {% endfor %}
+
+        {% csrf_token %}
+
+        
+        <div class="popup" style="margin-left: 15%; width: 40%;">
+            
+            <br>
+            <p style="color:rgb(240, 240, 240);"><b>Kindly provide the following details.</b></p><br>
+            <!-- generate form -->
+            <div style="margin-left:20%; text-align: left; ">{{form.as_p}}</div>
+
+            {% for item in showtime %}
+                {% if item.movie == movie %}
+                    {% if movie.showing_until is not None %}
+                    <p style="font-size: medium; color:rgb(255, 78, 78); ">&emsp;
+                        This movie is available UNTIL {{movie.showing_until}} .</p>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <input style="height: 40px; font-size: small" type="submit" value="Submit">    
+        </div>
+    </form>
+
+</div>
+
+<style>
+    .selected {
+        background-color: #930101;
+        color: white;
+    }
+</style>
+
+<script>
+    function toggleSelection(button) {
+        var buttons = document.querySelectorAll('button'); 
+        buttons.forEach(function(btn) { 
+            if (btn !== button) { 
+                btn.classList.remove('selected'); 
+            }
+        });
+        button.classList.toggle('selected'); 
+    }
+</script>
+{% endblock %}
+
+    <!-- <p style="margin-top: 50px;"></p>
+    <div class="timeslot" style="display:inline-flex; text-align: left;">
+        <p><b>&emsp;&emsp;Select your preferred showtime :</b></p>
+        {% for item in showtime %}
+            {% if movie == item.movie %}
+                {% if item.movie is not None %}
+                    {% if item.timeslot_1 %}
+                        <button onclick="toggleSelection(this)" value="{{ item.timeslot_1 }}">{{ item.timeslot_1 }}</button>
+                    {% endif %}
+                    {% if item.timeslot_2 %}
+                        <button onclick="toggleSelection(this)" value="{{ item.timeslot_2 }}">{{ item.timeslot_2 }}</button>
+                    {% endif %}
+                    {% if item.timeslot_3 %}
+                        <button onclick="toggleSelection(this)" value="{{ item.timeslot_3 }}">{{ item.timeslot_3 }}</button>
+                    {% endif %}
+                    {% if item.timeslot_4 %}
+                        <button onclick="toggleSelection(this)" value="{{ item.timeslot_4 }}">{{ item.timeslot_4 }}</button>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div><br> -->

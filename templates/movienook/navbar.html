@@ -1,0 +1,59 @@
+
+{% load static %}
+{% block content %}
+
+<div class="navbar">
+    
+    
+    
+    <div style="display: flex; flex-wrap: wrap;" class="navlinks">
+        <a href="/"><img src="{% static 'movienook_logo.png' %}" style="height: 80px;" alt="LOGO" id="logo"></a>
+        <a href="/" id="nav"><h3>home</h3></a>
+        <a href="{% url 'movie' %}" id="nav"> <h3>movie list</h3> </a>
+        <a href="{% url 'comingsoon' %}" id="nav"> <h3>coming soon</h3> </a>
+        <a href="{% url 'book-a-theater' %}" id="nav"><h3>book a theater</h3></a>
+       <h4>|</h4>
+
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}"><h3>LOGOUT</h3></a>
+        {% else %}
+        <a href="{% url 'login' %}" id="nav"><h3>LOGIN</h3></a>
+        {% endif %}
+
+        <a href="{% url 'signup' %}" id="nav"><h3>SIGNUP</h3></a>
+
+        <div class="account">
+            
+            <!-- <button id='login' onclick="openPopup1()">login</button>
+            <button id='signup' onclick="openPopup2()">signup</button> -->
+        </div>
+    </div>
+
+</div>
+<div class="overlay" id="overlay1" style="display: none;"></div>
+
+
+
+  
+<script>
+    function openPopup1() {
+      document.getElementById("popup1").style.display = "block"; 
+      document.getElementById("overlay1").style.display = "block"; 
+    }
+  
+    function closePopup1() {
+      document.getElementById("popup1").style.display = "none"; 
+      document.getElementById("overlay1").style.display = "none"; 
+    }
+
+    function openPopup2() {
+      document.getElementById("popup2").style.display = "block"; 
+      document.getElementById("overlay1").style.display = "block"; 
+    }
+  
+    function closePopup2() {
+      document.getElementById("popup2").style.display = "none"; 
+      document.getElementById("overlay1").style.display = "none"; 
+    }
+  </script>
+{% endblock content%}

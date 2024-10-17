@@ -1,0 +1,115 @@
+{% extends 'movienook/base.html'%}
+
+{% block content %}
+
+<html lang="en">
+<div class="content">
+
+
+
+<div class='detail_page' style="top: 0; left: 50%; margin: 15%;">
+    <h1 style="color: rgb(255, 78, 78);">WATCH</h1>
+
+<h2>{{ movie.title }}</h2>
+
+<fieldset style="padding: 25px;" class="movie_details_header">
+    <p><b>IN THEATERS | {{ movie.release_date }}</b><br>SM CITY LUCENA</p>
+</fieldset>
+
+
+
+<fieldset style="padding: 30px; display: grid; grid-template-columns: auto auto; gap: 20px;">
+    <div>
+        <img src="{{ movie.img.url }}" alt="movie img" style="height: 300px; width: 200px;">
+        {% if movie.showing_until is not None %}
+<p style="color: rgba(255, 78, 78, 0.536);">Until {{movie.showing_until}}</p>
+{% endif %}
+    </div>
+    <div class='detail_container' style="display: flex; flex-direction: column;">
+        <div style="padding: 30px;">
+            <p style="font-size: 18px; margin: 0;">{{ movie.summary }}</p><br>
+            <p style="margin: 0;"><b>Cast: <br>&emsp;</b><i>{{ movie.cast }}</i></p><br>
+            <p style="margin: 0;"><b>Genre: <br></b><i>
+                {% for genre in movie.genre.all %}
+                <ul>&emsp;{{ genre.name }}</ul>
+                {% endfor %}
+            </i></p>
+            <div class="time_rate_price">
+                <p style="margin: 0;"><b>Runtime: &emsp;</b><i>{{ movie.runtime }}</i></p>
+                <p style="margin: 0;"><b>Ratings: &emsp;</b><i>{{ movie.rating }}</i></p>
+                <p style="margin: 0; margin-top: 20px; display: inline-flex; height: 30px;
+                padding: 10px;background-color: rgba(246, 246, 246, 0.218);
+                box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);"><b>Php: &emsp;</b><i>{{ movie.price }}</i></p>
+            </div>
+
+            <div class="timeslot" style="margin-top: 10%;"><br>
+                <form action="{% url 'buyticket' movie.id %}" method="get" label="proceed">
+                    <h2><b>Showtime</b></h2>
+                    {% for item in showtime %}
+                        {% if movie == item.movie %}
+                            {% if item.movie is not None %}
+                                {% if item.timeslot_1 %}
+                                    <button onclick="toggleSelection(this)">{{ item.timeslot_1 }}</button>
+                                {% endif %}
+                                {% if item.timeslot_2 %}
+                                    <button onclick="toggleSelection(this)">{{ item.timeslot_2 }}</button>
+                                {% endif %}
+                                {% if item.timeslot_3 %}
+                                    <button onclick="toggleSelection(this)">{{ item.timeslot_3 }}</button>
+                                {% endif %}
+                                {% if item.timeslot_4 %}
+                                    <button onclick="toggleSelection(this)">{{ item.timeslot_4 }}</button>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </form>
+            </div>
+            <div class="details_buttons">
+                <form action="{% url 'movie' %}" method="get" label="cancel">
+                    <button style="margin-left: 90%;" class="proceed2seats">CANCEL</button>
+                </form>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</fieldset>
+
+    <div>
+        
+            
+
+            <!-- <form action="{% url 'buyticket' movie.id %}" method="get" label="proceed">
+                <button class="proceed2seats">PROCEED</button>
+            </form>         -->
+          
+    </div>
+    
+</div>
+
+
+</div>
+
+<style>
+    .selected {
+        background-color: #930101;
+        color: white;
+    }
+</style>
+
+<script>
+    function toggleSelection(button) {
+        var buttons = document.querySelectorAll('button'); 
+        buttons.forEach(function(btn) { 
+            if (btn !== button) { 
+                btn.classList.remove('selected'); 
+            }
+        });
+        button.classList.toggle('selected'); 
+    }
+</script>
+</html>
+{% endblock content %}
+<!-- {% include 'movienook/movie_schedules.html' %} -->
